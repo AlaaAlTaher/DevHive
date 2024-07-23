@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
 
 function Register() {
+
+
   const [error, setError] = useState("");
-
-
-  const navigate = useNavigate()
+  const navigate = useNavigate(); // to go to login
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,10 +27,10 @@ function Register() {
       });
 
       //testing        console.log(res.data);
-      navigate("/login")
+      navigate("/login");
     } catch (error) {
       console.log(error);
-      setError(error.response.data.message)
+      setError(error.response.data.message);
     }
   }; //to access liberary:     npm i axios
   return (
