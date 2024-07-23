@@ -1,0 +1,11 @@
+console-ninja node --watch app.js
+new version:
+console-ninja node --env-file .env --watch app.js 
+
+
+api>npm i bcrypt
+
+npm install express
+
+npm i prisma
+npx prisma init --datasource-provider mongodb

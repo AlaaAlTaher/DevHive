@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import prisma from "../lib/prisma.js";
 
 export const register = async (req, res) => {
@@ -32,8 +33,7 @@ export const login = async (req, res) => {
   try {
     // check user exsist
     const user = await prisma.user.findUnique({
-      where: { username },
-    }); 
+      where: { username },});
     if (!user) return res.status(401).json({ message: "Invalid Credentials" }); // error response (the numbers like 401 are error info for the web browser)
 
     //check user password
@@ -42,6 +42,32 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid Credentials" });
 
     //generating token & send to user
+
+    const age = 1000 * 60 * 60 * 24 * 7; //  from 1ms to 7 days
+
+
+    const token = jwt.sign( //user info here
+      {        
+        id: user.id, // so we can decrypt the token then know the userid from posts/ etc
+      },
+      process.env.JWT_SECRET_KEY, // this is secret key for the token HASHING FOR SECURITY, i saved it in env file
+      { expiresIn: age } // token will expier in this time.
+    );
+
+
+
+
+    res
+      .cookie("token", token, {
+        httpOnly: true, // for security purposes  // client side JS cant access the cookie
+        // secure: true // to make sure its HTTPS only in online server, we need to turn it on when we finish
+        maxAge: age, // when will it expier, now I made it  7 days, if removed will be till closing the session
+      })
+      .status(200)
+      .json({ message: "Login successful" });
+
+    // old wat for cookies:   res.setHeader("Set-Cookies", "test=" + "myValue").json("Success");
+
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "failed to login!" });
@@ -50,4 +76,9 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   //db opirations
+  res.clearCookie("token").status(200).json({ message: "Logout Successful" }); // to clear the token
 };
+
+// to restresct the user request this is what we will do. after the login we store the user information in a cookie, then we make a request we will send the cookie to the api , and inside our api  we  decript out cookie and check the user info, then  we interact with the request depending on that information 
+// npm i cookie-parser  for using cookies
+// npm i jsonwebtoken
