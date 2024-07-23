@@ -80,5 +80,9 @@ export const logout = (req, res) => {
 };
 
 // to restresct the user request this is what we will do. after the login we store the user information in a cookie, then we make a request we will send the cookie to the api , and inside our api  we  decript out cookie and check the user info, then  we interact with the request depending on that information 
+// we will have like middlewre for checking for important requests like deleting a post to make sure the user have access, but it will not be needed in requests like fetching/seeing a post, because everyone can do that. nothing to be worried about.
+//  after verify  the token info, if it wasnt the right user we will not make the database request nor do the request
+// to use the important routs you should be loginned and we will verify the user first
 // npm i cookie-parser  for using cookies
 // npm i jsonwebtoken
+ 
