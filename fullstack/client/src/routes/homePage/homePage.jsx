@@ -8,10 +8,10 @@ function HomePage() {
         <div className="wrapper">
           <h1 className="title">From Developers, To Developers</h1>
           <p>
-            DevHive is Jordan's premier freelancing platform for developers. We
+            DevHive is Jordans premier freelancing platform for developers. We
             connect talented developers with exciting projects, providing a
             space to showcase skills, collaborate, and grow. Join us today to
-            advance your freelancing career and be a part of Jordan's thriving
+            advance your freelancing career and be a part of Jordans thriving
             tech community.
           </p>
           <SearchBar />
