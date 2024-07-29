@@ -1,3 +1,6 @@
+
+
+
 import SearchBar from "../../components/searchBar/SearchBar";
 import "./homePage.scss";
 
@@ -8,7 +11,7 @@ function HomePage() {
         <div className="wrapper">
           <h1 className="title">From Developers, To Developers</h1>
           <p>
-            DevHive is Jordans premier freelancing platform for developers. We
+          DevHive is Jordans premier freelancing platform for developers. We
             connect talented developers with exciting projects, providing a
             space to showcase skills, collaborate, and grow. Join us today to
             advance your freelancing career and be a part of Jordans thriving
@@ -22,10 +25,10 @@ function HomePage() {
             </div>
             <div className="box">
               <h1>200</h1>
-              <h2>Awards Gained</h2>
+              <h2>Award Gained</h2>
             </div>
             <div className="box">
-              <h1>1200+</h1>
+              <h1>2000+</h1>
               <h2>Job Opportunities</h2>
             </div>
           </div>

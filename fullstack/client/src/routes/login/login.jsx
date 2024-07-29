@@ -1,6 +1,8 @@
-import axios from "axios";
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+//import apiRequest from "../../lib/apiRequest.js";
+import apiRequest from "../../lib/apiRequest";
 import "./login.scss";
 function Login() {
 
@@ -14,23 +16,26 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true)
+    setError("")
     const formData = new FormData(event.target); // to be able to use the form data
 
     const username = formData.get("username");
-    const email = formData.get("email");
     const password = formData.get("password");
 
     //console.log(username,email,password) testing
 
     try {
-      const res = await axios.post("http://localhost:8800/api/auth/register", {
+      const res = await apiRequest.post("/auth/login", {
         username,
-        email,
         password,
       });
 
-      //testing        console.log(res.data);
-      navigate("/login");
+      console.log(res) //this for testing
+            //testing        console.log(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data)) //sending the data
+
+      navigate("/");
+      
     } catch (error) {
       console.log(error);
       setError(error.response.data.message);

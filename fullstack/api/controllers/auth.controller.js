@@ -34,6 +34,7 @@ export const login = async (req, res) => {
     // check user exsist
     const user = await prisma.user.findUnique({
       where: { username },});
+
     if (!user) return res.status(401).json({ message: "Invalid Credentials" }); // error response (the numbers like 401 are error info for the web browser)
 
     //check user password
@@ -55,7 +56,7 @@ export const login = async (req, res) => {
     );
 
 
-
+    const {password:userPassword, ...userInfo} = user
 
     res
       .cookie("token", token, {
@@ -64,7 +65,7 @@ export const login = async (req, res) => {
         maxAge: age, // when will it expier, now I made it  7 days, if removed will be till closing the session
       })
       .status(200)
-      .json({ message: "Login successful" });
+      .json({ userInfo }); //log in successfull 
 
     // old wat for cookies:   res.setHeader("Set-Cookies", "test=" + "myValue").json("Success");
 
