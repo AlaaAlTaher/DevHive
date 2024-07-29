@@ -50,6 +50,8 @@ export const login = async (req, res) => {
     const token = jwt.sign( //user info here
       {        
         id: user.id, // so we can decrypt the token then know the userid from posts/ etc
+      isAdmin: true,
+      
       },
       process.env.JWT_SECRET_KEY, // this is secret key for the token HASHING FOR SECURITY, i saved it in env file
       { expiresIn: age } // token will expier in this time.
