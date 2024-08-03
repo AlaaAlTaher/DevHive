@@ -21,16 +21,15 @@ model User {
   password  String
   avatar    String?
   createdAt DateTime @default(now())
+
+//posts Post[]  // array because single user can create many posts
 }
 
 
-model Post {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String   
-  price     Int   
-  img       String
-  
-  createdAt DateTime @default(now())
-}
+
+
+
+
+
 
 // after any change in this file run (to save changes):    npx prisma db push   

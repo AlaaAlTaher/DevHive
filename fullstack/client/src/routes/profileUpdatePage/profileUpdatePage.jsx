@@ -8,7 +8,7 @@ import "./profileUpdatePage.scss";
 
 function ProfileUpdatePage() {
 
-  const { currentUser, updateUser } = useContext(AuthContext);
+  const { currentUser , updateUser} = useContext(AuthContext);
 
   const [error, setError] = useState("");
   const [avatar, setAvatar] = useState(currentUser.avatar);
