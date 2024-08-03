@@ -49,7 +49,7 @@ function Register() {
           <h1>Create an Account</h1>
           <input name="username" type="text" required minLength={3} maxLength={20} placeholder="Username" />
           <input name="email" type="text" placeholder="Email" />
-          <input name="password" type="password" required minLength={8} placeholder="Password" />
+          <input name="password" type="password" placeholder="Password" />
           <button disabled={IsLoading}>Register</button>
           {error && <span>{error}</span>}
           <Link to="/login">Do you have an account?</Link>

@@ -1,7 +1,8 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //import apiRequest from "../../lib/apiRequest.js";
+import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import "./login.scss";
 function Login() {
@@ -10,6 +11,9 @@ function Login() {
   const [error, setError] = useState("");
 
   const [IsLoading, setIsLoading] = useState(false);
+
+  const {updateUser} = useContext(AuthContext);//////////////////////
+
 
   const navigate = useNavigate(); 
 
@@ -32,7 +36,10 @@ function Login() {
 
       console.log(res) //this for testing
             //testing        console.log(res.data);
-      localStorage.setItem("user", JSON.stringify(res.data)) //sending the data
+     // localStorage.setItem("user", JSON.stringify(res.data)) //sending the data
+      updateUser(res.data) // this is instead of the one above it
+
+
 
       navigate("/");
       
@@ -52,7 +59,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <h1>Welcome back</h1>
           <input name="username" required minLength={3} maxLength={20} type="text" placeholder="Username" />
-          <input name="password" type="password" required minLength={8}  placeholder="Password" />
+          <input name="password" type="password"  placeholder="Password" />
           <button disabled={IsLoading}>Login</button>    
           {error && <span>{error}</span>}
           <Link to="/register">{"Don't"} you have an account?</Link>

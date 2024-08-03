@@ -23,4 +23,14 @@ model User {
   createdAt DateTime @default(now())
 }
 
-// after any change in this file run (to save changes):    npx prisma db push
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String   
+  price     Int   
+  img       String
+  
+  createdAt DateTime @default(now())
+}
+
+// after any change in this file run (to save changes):    npx prisma db push   

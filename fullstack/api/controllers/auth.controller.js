@@ -57,8 +57,7 @@ export const login = async (req, res) => {
       { expiresIn: age } // token will expier in this time.
     );
 
-
-    const {password:userPassword, ...userInfo} = user
+    const { password: userPassword, ...userInfo } = user;
 
     res
       .cookie("token", token, {
@@ -67,7 +66,7 @@ export const login = async (req, res) => {
         maxAge: age, // when will it expier, now I made it  7 days, if removed will be till closing the session
       })
       .status(200)
-      .json({ userInfo }); //log in successfull 
+      .json (userInfo); //log in successfull 
 
     // old wat for cookies:   res.setHeader("Set-Cookies", "test=" + "myValue").json("Success");
 
