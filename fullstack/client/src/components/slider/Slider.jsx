@@ -19,6 +19,7 @@ function Slider({ images }) {
       }
     }
   };
+
   return (
     <div className="slider">
       {imageIndex !== null && (

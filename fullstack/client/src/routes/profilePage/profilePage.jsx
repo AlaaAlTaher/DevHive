@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Suspense, useContext } from "react";
+import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import Chat from "../../components/chat/Chat";
 import List from "../../components/list/List";
 import { AuthContext } from "../../context/AuthContext";
@@ -10,6 +10,7 @@ function ProfilePage() {
 
   const navigate = useNavigate();
 
+  const data = useLoaderData();
   /*   useEffect(() => {
     if (!currentUser) {
       //if there is no user redirect to login
@@ -36,9 +37,8 @@ function ProfilePage() {
           <div className="title">
             <h1>User Information</h1>
             <Link to="/profile/update">
-            <button>Update Profile</button>
+              <button>Update Profile</button>
             </Link>
-
           </div>
           <div className="info">
             <span>
@@ -58,13 +58,29 @@ function ProfilePage() {
           </div>
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
-          </div>
-          <List />
+            <Link to="/add">
+              <button>Create New Post</button>
+            </Link>
+          </div> {/* trying to delete the suspence to fix the error 3:48 */}
+          <Suspense fallback={<p>Loading...</p>}>  {/* Trying to add like loading screen function, if worked ill keep it it seems fun and intresting to learn */}
+            <Await
+              resolve={data.postResponse}
+              errorElement={<p>Error loading posts!</p>}
+            >
+              {(postResponse) => <List posts={postResponse.data.userPosts} />}
+            </Await>
+            </Suspense>
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <List />
+          <Suspense fallback={<p>Loading...</p>}>  {/* Trying to add like loading screen function, if worked ill keep it it seems fun and intresting to learn */}
+            <Await
+              resolve={data.postResponse}
+              errorElement={<p>Error loading posts!</p>}
+            >
+              {(postResponse) => <List posts={postResponse.data.savedPosts} />}
+            </Await>
+            </Suspense>   
         </div>
       </div>
       <div className="chatContainer">

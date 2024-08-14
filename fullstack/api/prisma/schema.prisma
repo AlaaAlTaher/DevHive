@@ -14,6 +14,86 @@ datasource db {
 }
 
 // @ unique -- ? could be empty
+
+
+
+
+
+
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String   
+  price     Int   
+  images      String[]
+  address       String
+  city       String
+  bedroom       Int
+  bathroom       Int
+  latitude       String
+  longitude       String
+
+
+  type        Type
+  property    Property
+
+
+  createdAt DateTime @default(now())
+
+
+  user User @relation(fields:[userId], references: [id])
+    userId String @db.ObjectId
+
+    postDetail PostDetail?
+    savedPosts SavedPost[]
+}
+
+
+
+
+enum Type {
+buy
+rent
+}
+
+enum Property {
+apartment
+house
+condo
+land
+}
+
+model PostDetail{
+   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+   desc String 
+   utilities String?   //? means not requir4ed
+   pet String?
+   income String?
+   size Int?
+   school Int?
+   bus Int?
+   restaurant Int?
+
+
+post Post @relation(fields: [postId], references: [id])
+postId String @db.ObjectId @unique
+
+}
+
+model SavedPost{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
+
+  userId String @db.ObjectId @unique
+  postId String @db.ObjectId @unique
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   email     String   @unique
@@ -22,14 +102,32 @@ model User {
   avatar    String?
   createdAt DateTime @default(now())
 
-//posts Post[]  // array because single user can create many posts
+posts Post[]  // array because single user can create many posts
+    savedPosts SavedPost[]
+    chats Chat[] @relation(fields:[chatIDs], references: [id])
+    chatIDs String[] @db.ObjectId
+}
+
+model Chat{ //2 users and multiple msg and last msg and notification and seen 
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    users User[]  @relation(fields:[userIDs], references: [id])
+    userIDs String[] @db.ObjectId
+      createdAt DateTime @default(now())
+      seenBy String[] @db.ObjectId
+      messages Message[] 
+      lastMessage String?
 }
 
 
+model Message{ 
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    text String 
+    userId String 
+    chat Chat @relation(fields: [chatId], references: [id])
+    chatId String @db.ObjectId
 
+      createdAt DateTime @default(now())
 
-
-
-
+}
 
 // after any change in this file run (to save changes):    npx prisma db push   

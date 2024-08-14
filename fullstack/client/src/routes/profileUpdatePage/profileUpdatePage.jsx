@@ -11,7 +11,7 @@ function ProfileUpdatePage() {
   const { currentUser , updateUser} = useContext(AuthContext);
 
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState([]);
 
 
 
@@ -27,7 +27,7 @@ function ProfileUpdatePage() {
         username,
         email,
         password,
-        avatar,
+        avatar:[0] // 0 is like first item
       });
 
       updateUser(res.data)////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@ function ProfileUpdatePage() {
       </div>
       <div className="sideContainer">
         <img
-          src={avatar || "/noavatar.jpg"}
+          src={avatar[0] || currentUser.avatar || "/noavatar.jpg"} // if there is no avatar it will show the current avatar  and if it dont exsist show no avatar
           alt=""
           className="avatar"
         />
@@ -84,7 +84,8 @@ function ProfileUpdatePage() {
           folder:"avatars",        // folder where the image will be stored
           
           }}
-          setAvatar={setAvatar}
+         // setAvatar={setAvatar}
+         setState={setAvatar}
           
           />
       </div>
