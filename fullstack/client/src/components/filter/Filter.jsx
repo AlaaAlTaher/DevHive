@@ -3,18 +3,15 @@ import { useSearchParams } from "react-router-dom";
 import "./filter.scss";
 
 function Filter() {
-
-
-
   const [searchParams, setSearchParams] = useSearchParams();
-  //console.log(searchParams.get("city")); //city test
+    //console.log(searchParams.get("city")); //city test
   const [query, setQuery] = useState({
-    type: searchParams.get("type") || " ",
-    city: searchParams.get("city") || " ",
+    type: searchParams.get("type") || "",
+    city: searchParams.get("city") || "",
     property: searchParams.get("property") || "",
-    minPrice: searchParams.get("minPrice") || 0,
-    maxPrice: searchParams.get("maxPrice") || 1000000,
-    bedroom: searchParams.get("bedroom") || 0,
+    minPrice: searchParams.get("minPrice") || "",
+    maxPrice: searchParams.get("maxPrice") || "",
+    bedroom: searchParams.get("bedroom") || "",
   });
 
   const handleChange = (e) => {

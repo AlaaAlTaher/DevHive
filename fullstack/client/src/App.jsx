@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./routes/homePage/homePage";
-//import { default as Layout, default as RequireAuth } from "./routes/layout/layout";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
+import HomePage from "./routes/homePage/homePage";
 import { Layout, RequireAuth } from "./routes/layout/layout";
 import ListPage from "./routes/listPage/listPage";
 import Login from "./routes/login/login";
@@ -10,8 +9,6 @@ import ProfilePage from "./routes/profilePage/profilePage";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import Register from "./routes/register/register";
 import SinglePage from "./routes/singlePage/singlePage";
-
-
 
 function App() {
   const router = createBrowserRouter([
@@ -51,7 +48,7 @@ function App() {
         {
           path: "/profile",
           element: <ProfilePage />,
-          loader: profilePageLoader,
+          loader: profilePageLoader
         },
         {
           path: "/profile/update",
@@ -69,3 +66,10 @@ function App() {
 }
 
 export default App;
+
+
+
+
+// for sockets in client  npm i zustand
+
+// npm install socket.io-client timeago.js

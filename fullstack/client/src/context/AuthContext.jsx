@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
  
- 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => { //its like wrapping the program here-:1:33

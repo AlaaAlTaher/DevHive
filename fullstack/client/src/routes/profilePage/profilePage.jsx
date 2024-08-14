@@ -5,13 +5,10 @@ import List from "../../components/list/List";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
 import "./profilePage.scss";
+
 function ProfilePage() {
-  const { updateUser, currentUser } = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
   const data = useLoaderData();
-  /*   useEffect(() => {
+    /*   useEffect(() => {
     if (!currentUser) {
       //if there is no user redirect to login
 
@@ -19,12 +16,17 @@ function ProfilePage() {
     }
   }, [currentUser, navigate]); */ // it was replaced by layout
 
+
+
+  const { updateUser, currentUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
       await apiRequest.post("/auth/logout");
-      //localStorage.removeItem("user")
+        //localStorage.removeItem("user")
       updateUser(null); // instead of line above
-
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -43,10 +45,8 @@ function ProfilePage() {
           <div className="info">
             <span>
               Avatar:
-              <img
-                src={currentUser.avatar || "noavatar.jpg"} //https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
-                alt=""
-              />
+              <img src={currentUser.avatar || "noavatar.jpg"}  //https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+               alt=""  /> 
             </span>
             <span>
               Username: <b>{currentUser.username}</b>
@@ -61,31 +61,38 @@ function ProfilePage() {
             <Link to="/add">
               <button>Create New Post</button>
             </Link>
-          </div> {/* trying to delete the suspence to fix the error 3:48 */}
-          <Suspense fallback={<p>Loading...</p>}>  {/* Trying to add like loading screen function, if worked ill keep it it seems fun and intresting to learn */}
+          </div> 
+          <Suspense fallback={<p>Loading...</p>}> 
             <Await
               resolve={data.postResponse}
               errorElement={<p>Error loading posts!</p>}
             >
               {(postResponse) => <List posts={postResponse.data.userPosts} />}
             </Await>
-            </Suspense>
+          </Suspense>
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>  {/* Trying to add like loading screen function, if worked ill keep it it seems fun and intresting to learn */}
+          <Suspense fallback={<p>Loading...</p>}>  
             <Await
               resolve={data.postResponse}
               errorElement={<p>Error loading posts!</p>}
             >
               {(postResponse) => <List posts={postResponse.data.savedPosts} />}
             </Await>
-            </Suspense>   
+          </Suspense>
         </div>
       </div>
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+          <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.chatResponse}
+              errorElement={<p>Error loading chats!</p>}
+            >
+              {(chatResponse) => <Chat chats={chatResponse.data}/>}
+            </Await>
+          </Suspense>
         </div>
       </div>
     </div>

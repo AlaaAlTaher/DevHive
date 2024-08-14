@@ -1,20 +1,26 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useNotificationStore } from "../../lib/notificationStore";
 import "./navbar.scss";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
-  //const user = true; dummy data for line above it
+   //const user = true; dummy data for line above it
+
+  const fetch = useNotificationStore((state) => state.fetch);
+  const number = useNotificationStore((state) => state.number);
+
+  if(currentUser) fetch();
 
   return (
     <nav>
       <div className="left">
         <a href="/" className="logo">
           <img src="/logo.png" alt="" />
-          <span>DevHive</span>
+          <span>LamaEstate</span>
         </a>
         <a href="/">Home</a>
         <a href="/">About</a>
@@ -23,14 +29,12 @@ function Navbar() {
       </div>
       <div className="right">
         {currentUser ? (
-          <div className="user">
-            <img
-              src={currentUser.avatar || "/noavatar.jpg"} //https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
-              alt=""
-            />
+          <div className="user"> 
+            <img src={currentUser.avatar || "/noavatar.jpg"} //https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+             alt="" />
             <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
-              <div className="notification">3</div>
+              {number > 0 && <div className="notification">{number}</div>}
               <span>Profile</span>
             </Link>
           </div>

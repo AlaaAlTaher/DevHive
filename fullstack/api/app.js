@@ -8,8 +8,10 @@ import postRoute from "./routes/post.route.js";
 import testRoute from "./routes/test.route.js";
 import userRoute from "./routes/user.route.js";
 
+const app = express();  //create app
 
-const app = express(); //create app
+
+
 
 /*     app.use("/api/test", (req, res) => { //take request and send respons  
         res.send("it works");
@@ -39,10 +41,14 @@ const app = express(); //create app
         res.send("it works");
     }) */
 
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true })); // i used credentials:true to enable using cookies
+
+
+
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));  // i used credentials:true to enable using cookies
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
@@ -51,9 +57,11 @@ app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
 
 app.listen(8800, () => {
-  console.log("Server is running!"); 
-  // nodemon app.js
+  console.log("Server is running!");
+    // nodemon app.js
 });
+
+
 
 //to connect
 //console-ninja node --watch app.js

@@ -1,6 +1,6 @@
 import DOMPurify from "dompurify";
 import { useContext, useState } from "react";
-import { redirect, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Map from "../../components/map/Map";
 import Slider from "../../components/slider/Slider";
 import { AuthContext } from "../../context/AuthContext";
@@ -10,22 +10,21 @@ import "./singlePage.scss";
 function SinglePage() {
   const post = useLoaderData();
   console.log(post);
-
   const [saved, setSaved] = useState(post.isSaved);
-
   const { currentUser } = useContext(AuthContext);
-  const handleSaved = async () => {
+  const navigate = useNavigate();
 
-    setSaved((prev) => !prev)
-
+  const handleSave = async () => {
     if (!currentUser) {
-      redirect("/login");
+      navigate("/login");
     }
+
+    setSaved((prev) => !prev);
     try {
       await apiRequest.post("/users/save", { postId: post.id });
     } catch (err) {
       console.log(err);
-      setSaved((prev) => !prev)
+      setSaved((prev) => !prev);
     }
   };
 
@@ -67,9 +66,9 @@ function SinglePage() {
               <div className="featureText">
                 <span>Utilities</span>
                 {post.postDetail.utilities === "owner" ? (
-                  <p>Owner is responsable</p>
+                  <p>Owner is responsible</p>
                 ) : (
-                  <p>buyer is responsible</p>
+                  <p>Tenant is responsible</p>
                 )}
               </div>
             </div>
@@ -78,16 +77,16 @@ function SinglePage() {
               <div className="featureText">
                 <span>Pet Policy</span>
                 {post.postDetail.pet === "allowed" ? (
-                  <p>pet is allowed</p>
+                  <p>Pets Allowed</p>
                 ) : (
-                  <p>pet is not allowed</p>
+                  <p>Pets not Allowed</p>
                 )}
               </div>
             </div>
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
-                <span>income Polecy</span>
+                <span>Income Policy</span>
                 <p>{post.postDetail.income}</p>
               </div>
             </div>
@@ -100,7 +99,7 @@ function SinglePage() {
             </div>
             <div className="size">
               <img src="/bed.png" alt="" />
-              <span> {post.bedroom} beds</span>
+              <span>{post.bedroom} beds</span>
             </div>
             <div className="size">
               <img src="/bath.png" alt="" />
@@ -122,14 +121,14 @@ function SinglePage() {
               </div>
             </div>
             <div className="feature">
-              <img src="/bus.png" alt="" />
+              <img src="/pet.png" alt="" />
               <div className="featureText">
                 <span>Bus Stop</span>
                 <p>{post.postDetail.bus}m away</p>
               </div>
             </div>
             <div className="feature">
-              <img src="/restaurant.png" alt="" />
+              <img src="/fee.png" alt="" />
               <div className="featureText">
                 <span>Restaurant</span>
                 <p>{post.postDetail.restaurant}m away</p>
@@ -145,12 +144,14 @@ function SinglePage() {
               <img src="/chat.png" alt="" />
               Send a Message
             </button>
-            <button onClick={handleSaved} style={{
-              backgroundColor: saved ? "#fece51" : "white",
-            }}>
-        
+            <button
+              onClick={handleSave}
+              style={{
+                backgroundColor: saved ? "#fece51" : "white",
+              }}
+            >
               <img src="/save.png" alt="" />
-              {saved ? " Place Saved" :"Save the Place"}
+              {saved ? "Place Saved" : "Save the Place"}
             </button>
           </div>
         </div>
