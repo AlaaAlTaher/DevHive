@@ -15,9 +15,9 @@ export const getPosts = async (req, res) => {
         gte: parseInt(query.minPrice) || undefined,
         lte: parseInt(query.maxPrice) || undefined,
       },
-    },
-  });
-
+    }, 
+  }); 
+   
     // setTimeout(() => {
     res.status(200).json(posts);
     // }, 3000);

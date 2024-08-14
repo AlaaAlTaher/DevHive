@@ -45,7 +45,7 @@ function ProfilePage() {
           <div className="info">
             <span>
               Avatar:
-              <img src={currentUser.avatar || "noavatar.jpg"}  //https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+              <img src={currentUser.avatar || "noavatar.jpg"} 
                alt=""  /> 
             </span>
             <span>
@@ -62,7 +62,7 @@ function ProfilePage() {
               <button>Create New Post</button>
             </Link>
           </div> 
-          <Suspense fallback={<p>Loading...</p>}> 
+          <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}
               errorElement={<p>Error loading posts!</p>}
@@ -73,7 +73,7 @@ function ProfilePage() {
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>  
+          <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}
               errorElement={<p>Error loading posts!</p>}
@@ -100,3 +100,9 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
+
+
+// line 48               //     //https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
+// line 64               //    trying to delete the suspence to fix the error 3:48 
+// line 65               //     Trying to add like loading screen function, if worked ill keep it it seems fun and intresting to learn
+// line 76               //       Trying to add like loading screen function, if worked ill keep it it seems fun and intresting to learn

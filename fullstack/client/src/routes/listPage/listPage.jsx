@@ -5,11 +5,10 @@ import Filter from "../../components/filter/Filter";
 import Map from "../../components/map/Map";
 import "./listPage.scss";
 
-
 function ListPage() {
+  const data = useLoaderData();
  // const data = listdata;
   //const posts =useLoaderData()
-  const data = useLoaderData();
   return (
     <div className="listPage">
       <div className="listContainer">
@@ -26,11 +25,11 @@ function ListPage() {
                 ))
               }
             </Await>
-          </Suspense>  
+          </Suspense>
         </div>
       </div>
-    <div className="mapContainer"> 
-    <Suspense fallback={<p>Loading...</p>}>
+      <div className="mapContainer">
+        <Suspense fallback={<p>Loading...</p>}>
           <Await
             resolve={data.postResponse}
             errorElement={<p>Error loading posts!</p>}
@@ -38,9 +37,9 @@ function ListPage() {
             {(postResponse) => <Map items={postResponse.data} />}
           </Await>
         </Suspense>
-      </div>   
+      </div>
     </div>
   );
-} 
- 
+}
+
 export default ListPage;

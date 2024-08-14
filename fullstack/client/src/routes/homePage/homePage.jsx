@@ -1,5 +1,3 @@
-
-
 import { useContext } from "react";
 import SearchBar from "../../components/searchBar/SearchBar";
 import { AuthContext } from "../../context/AuthContext";
@@ -7,20 +5,18 @@ import "./homePage.scss";
 
 function HomePage() {
 
-  const {currentUser} = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext)
 
-  console.log(currentUser)
   return (
     <div className="homePage">
       <div className="textContainer">
         <div className="wrapper">
-          <h1 className="title">From Developers, To Developers</h1>
+          <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
           <p>
-          DevHive is Jordans premier freelancing platform for developers. We
-            connect talented developers with exciting projects, providing a
-            space to showcase skills, collaborate, and grow. Join us today to
-            advance your freelancing career and be a part of Jordans thriving
-            tech community.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
+            explicabo suscipit cum eius, iure est nulla animi consequatur
+            facilis id pariatur fugit quos laudantium temporibus dolor ea
+            repellat provident impedit!
           </p>
           <SearchBar />
           <div className="boxes">
@@ -34,7 +30,7 @@ function HomePage() {
             </div>
             <div className="box">
               <h1>2000+</h1>
-              <h2>Job Opportunities</h2>
+              <h2>Property Ready</h2>
             </div>
           </div>
         </div>

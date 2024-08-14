@@ -5,20 +5,18 @@ import { useNavigate } from "react-router-dom";
 import UploadWidget from "../../components/uploadWidget/UploadWidget";
 import apiRequest from "../../lib/apiRequest";
 import "./newPostPage.scss";
+
 function NewPostPage() {
   const [value, setValue] = useState(""); // 2,34
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
 
+  const navigate = useNavigate()
 
-const navigate = useNavigate()
-
-  const handleSubmit = async (e) => {
-    // send the form
+  const handleSubmit = async (e) => {      // send the form
     e.preventDefault();
     const formData = new FormData(e.target);
-    const inputs = Object.fromEntries(formData.entries());
-    console.log(inputs);
+    const inputs = Object.fromEntries(formData);
 
     try {
       const res = await apiRequest.post("/posts", {
@@ -35,7 +33,7 @@ const navigate = useNavigate()
           longitude: inputs.longitude,
           images: images,
         },
-        postDetail: {
+        postDetail: { 
           desc: value, // its in the usestate from the editor
           utilities: inputs.utilities,
           pet: inputs.pet,
@@ -46,9 +44,7 @@ const navigate = useNavigate()
           restaurant: parseInt(inputs.restaurant),
         },
       });
-
       navigate("/"+res.data.id) // post id too
-
     } catch (err) {
       console.log(err);
       setError(error);
@@ -115,6 +111,7 @@ const navigate = useNavigate()
                 <option value="land">Land</option>
               </select>
             </div>
+
             <div className="item">
               <label htmlFor="utilities">Utilities Policy</label>
               <select name="utilities">
@@ -161,18 +158,15 @@ const navigate = useNavigate()
         </div>
       </div>
       <div className="sideContainer">
-        {images.map((image,index) => (
+        {images.map((image, index) => (
           <img src={image} key={index} alt="" />
         ))}
         <UploadWidget
           uwConfig={{
-            // for multi emage
-            multiple: true,
-              cloudName: "lamadev",
-              uploadPreset: "estate",
-             // maxImgeFileSize: 10000000,
-              folder: "posts",
-            
+            multiple: true, // for multi emage
+            cloudName: "lamadev", 
+            uploadPreset: "estate", // maxImgeFileSize: 10000000,
+            folder: "posts",
           }}
           setState={setImages}
         />
@@ -182,5 +176,6 @@ const navigate = useNavigate()
 }
 
 export default NewPostPage;
+
 
 //  npm i react-quill     in the client

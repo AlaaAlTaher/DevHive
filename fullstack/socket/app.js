@@ -1,5 +1,3 @@
-
-
 import { Server } from "socket.io";
 
 const io = new Server({
@@ -31,7 +29,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("sendMessage", ({ receiverId, data }) => {
-    //console.log(data)
     const receiver = getUser(receiverId);
     io.to(receiver.socketId).emit("getMessage", data);
   });
@@ -45,13 +42,9 @@ io.listen("4000");
 
 
 
+//in socket   npm i socket.io
+// in client npm i socket.io-client
 
+//console-ninja node --watch app.js
 
-
-
-
-
-//  npm init -y
-// npm i socket.io
-
-// to run it:      console-ninja node --watch app.js
+//
