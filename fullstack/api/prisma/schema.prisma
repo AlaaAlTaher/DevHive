@@ -26,10 +26,10 @@ model Post {
   title     String   
   price     Int   
   images      String[]
-  address       String
-  city       String
-  bedroom       Int
-  bathroom       Int
+  website       String
+  Name       String
+  Duration       Int
+  Members       Int
   latitude       String
   longitude       String
 
@@ -52,27 +52,25 @@ model Post {
 
 
 enum Type {
-buy
-rent
+Freelance
+BugHunting
 }
 
 enum Property {
-apartment
-house
-condo
-land
+website
+mobile
+game
+other
 }
 
 model PostDetail{
    id        String   @id @default(auto()) @map("_id") @db.ObjectId
    desc String 
-   utilities String?   //? means not requir4ed
-   pet String?
-   income String?
-   size Int?
-   school Int?
-   bus Int?
-   restaurant Int?
+   tools String?   //? means not requir4ed
+   AI String?
+   Notes String?
+   difficulty Int?
+
 
 
 post Post @relation(fields: [postId], references: [id])
@@ -130,4 +128,4 @@ model Message{
 
 }
 
-// after any change in this file run (to save changes):    npx prisma db push   
+// after any change in this file run (to save changes):    npx prisma db push     

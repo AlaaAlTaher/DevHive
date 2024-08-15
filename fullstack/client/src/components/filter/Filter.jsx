@@ -4,14 +4,14 @@ import "./filter.scss";
 
 function Filter() {
   const [searchParams, setSearchParams] = useSearchParams();
-    //console.log(searchParams.get("city")); //city test
+    //console.log(searchParams.get("Name")); //Name test
   const [query, setQuery] = useState({
     type: searchParams.get("type") || "",
-    city: searchParams.get("city") || "",
+    Name: searchParams.get("Name") || "",
     property: searchParams.get("property") || "",
     minPrice: searchParams.get("minPrice") || "",
     maxPrice: searchParams.get("maxPrice") || "",
-    bedroom: searchParams.get("bedroom") || "",
+    Duration: searchParams.get("Duration") || "",
   });
 
   const handleChange = (e) => {
@@ -28,18 +28,18 @@ function Filter() {
   return (
     <div className="filter">
       <h1>
-        Search results for <b>{searchParams.get("city")}</b>
+        Search results for <b>{searchParams.get("Name")}</b>
       </h1>
       <div className="top">
         <div className="item">
-          <label htmlFor="city">Location</label>
+          <label htmlFor="Name">Location</label>
           <input
             type="text"
-            id="city"
-            name="city"
-            placeholder="City Location"
+            id="Name"
+            name="Name"
+            placeholder="Name Location"
             onChange={handleChange}
-            defaultValue={query.city} // maybe here the defined problem
+            defaultValue={query.Name} // maybe here the defined problem
           />
         </div>
       </div>
@@ -48,13 +48,13 @@ function Filter() {
           <label htmlFor="type">Type</label>
           <select
             name="type"
-            id="type"
+            id="type" 
             onChange={handleChange}
             defaultValue={query.type}
           >
             <option value="">any</option>
-            <option value="buy">Buy</option>
-            <option value="rent">Rent</option>
+            <option value="Freelance">Freelance</option>
+            <option value="BugHunting">BugHunting</option>
           </select>
         </div>
         <div className="item">
@@ -66,10 +66,10 @@ function Filter() {
             defaultValue={query.property}
           >
             <option value="">any</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">House</option>
-            <option value="condo">Condo</option>
-            <option value="land">Land</option>
+            <option value="website">website</option>
+            <option value="mobile">mobile</option>
+            <option value="game">game</option>
+            <option value="other">other</option>
           </select>
         </div>
         <div className="item">
@@ -95,14 +95,14 @@ function Filter() {
           />
         </div>
         <div className="item">
-          <label htmlFor="bedroom">Bedroom</label>
+          <label htmlFor="Duration">Duration</label>
           <input
             type="text"
-            id="bedroom"
-            name="bedroom"
+            id="Duration"
+            name="Duration"
             placeholder="any"
             onChange={handleChange}
-            defaultValue={query.bedroom}
+            defaultValue={query.Duration}
           />
         </div>
         <button onClick={handleFilter}>

@@ -37,9 +37,9 @@ function SinglePage() {
             <div className="top">
               <div className="post">
                 <h1>{post.title}</h1>
-                <div className="address">
+                <div className="website">
                   <img src="/pin.png" alt="" />
-                  <span>{post.address}</span>
+                  <span>{post.website}</span>
                 </div>
                 <div className="price">$ {post.price}</div>
               </div>
@@ -64,8 +64,8 @@ function SinglePage() {
             <div className="feature">
               <img src="/utility.png" alt="" />
               <div className="featureText">
-                <span>Utilities</span>
-                {post.postDetail.utilities === "owner" ? (
+                <span>tools</span>
+                {post.postDetail.tools === "owner" ? (
                   <p>Owner is responsible</p>
                 ) : (
                   <p>Tenant is responsible</p>
@@ -73,37 +73,37 @@ function SinglePage() {
               </div>
             </div>
             <div className="feature">
-              <img src="/pet.png" alt="" />
+              <img src="/AI.png" alt="" />
               <div className="featureText">
-                <span>Pet Policy</span>
-                {post.postDetail.pet === "allowed" ? (
-                  <p>Pets Allowed</p>
+                <span>AI Policy</span>
+                {post.postDetail.AI === "allowed" ? (
+                  <p>AIs Allowed</p>
                 ) : (
-                  <p>Pets not Allowed</p>
+                  <p>AIs not Allowed</p>
                 )}
               </div>
             </div>
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
-                <span>Income Policy</span>
-                <p>{post.postDetail.income}</p>
+                <span>Notes</span>
+                <p>{post.postDetail.Notes}</p>
               </div>
             </div>
           </div>
           <p className="title">Sizes</p>
           <div className="sizes">
-            <div className="size">
-              <img src="/size.png" alt="" />
-              <span>{post.postDetail.size} sqft</span>
+            <div className="difficulty">
+              <img src="/difficulty.png" alt="" />
+              <span>{post.postDetail.difficulty} </span>
             </div>
-            <div className="size">
+            <div className="difficulty">
               <img src="/bed.png" alt="" />
-              <span>{post.bedroom} beds</span>
+              <span>{post.Duration} beds</span>
             </div>
-            <div className="size">
+            <div className="difficulty">
               <img src="/bath.png" alt="" />
-              <span>{post.bathroom} bathroom</span>
+              <span>{post.Members} Members</span>
             </div>
           </div>
           <p className="title">Nearby Places</p>
@@ -121,7 +121,7 @@ function SinglePage() {
               </div>
             </div>
             <div className="feature">
-              <img src="/pet.png" alt="" />
+              <img src="/AI.png" alt="" />
               <div className="featureText">
                 <span>Bus Stop</span>
                 <p>{post.postDetail.bus}m away</p>

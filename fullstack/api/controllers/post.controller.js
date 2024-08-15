@@ -7,10 +7,10 @@ export const getPosts = async (req, res) => {
  try {
   const posts = await prisma.post.findMany({
     where: {
-      city: query.city || undefined,
+      Name: query.Name || undefined,
       type: query.type || undefined,
       property: query.property || undefined,
-      bedroom: parseInt(query.bedroom) || undefined,
+      Duration: parseInt(query.Duration) || undefined,
       price: {
         gte: parseInt(query.minPrice) || undefined,
         lte: parseInt(query.maxPrice) || undefined,
@@ -23,7 +23,7 @@ export const getPosts = async (req, res) => {
     // }, 3000);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to get posts" });
+    res.status(500).json({ message: "Failed to gett posts" });
   }
 };
 
@@ -114,7 +114,7 @@ export const deletePost = async (req, res) => {
     await prisma.post.delete({
       where: { id },
     });
-
+ 
     res.status(200).json({ message: "Post deleted" });  // if everything is ok  we will return this msg
   } catch (err) {
     console.log(err);
