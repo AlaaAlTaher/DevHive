@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "66a8784a-16c8-4c80-91b2-5d969cf1f853",
+		"name": "DevHive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37139922"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"john\",\r\n    \"email\":\"john@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8800/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8800",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"alaa\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/auth/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "Protected Routes Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/test/should-be-logged-in",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"test",
+								"should-be-logged-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/669f8e2d9d16971073f9c8d9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"669f8e2d9d16971073f9c8d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"john\",\r\n    \"email\": \"updated@gmail.com\",\r\n    \"password\":\"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/669e3713eca3be25b9d884cd",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"669e3713eca3be25b9d884cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/123",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Get Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts/66bc194a683248f1496f186f",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								"66bc194a683248f1496f186f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"postData\":{\r\n    \"title\":\"Title2\",\r\n    \"price\": 111,\r\n    \"images\": [\r\n        \"https://images.pexels.com/photos/96938/pexels-photo-96938.jpeg\",\r\n        \"https://images.pexels.com/photos/96938/pexels-photo-96938.jpeg\",\r\n        \"https://images.pexels.com/photos/96938/pexels-photo-96938.jpeg\",\r\n        \"https://images.pexels.com/photos/96938/pexels-photo-96938.jpeg\"\r\n    ],\r\n    \"address\": \"Address1\",\r\n    \"city\": \"City1\",\r\n    \"bedroom\": 11,\r\n    \"bathroom\": 111,\r\n    \"type\":\"rent\",\r\n    \"property\":\"apartment\",\r\n    \"latitude\":\"51.5074\",\r\n    \"longitude\":\"-0.1278\"\r\n\r\n},\r\n\r\n    \"postDetail\":{\r\n   \"desc\" : \"Desc 1 \",\r\n   \"utilities\" : \"Owner is responsable\",\r\n   \"pet\": \"Allowed\",\r\n   \"income\" : \"3x income\",\r\n   \"size\" : 88,\r\n   \"school\": 1200,\r\n   \"bus\": 800,\r\n   \"restaurant\" : 1500\r\n        \r\n\r\n    }\r\n}\r\n// title 2 id 66baf969fc93674a762220e0\r\n//66a3837515d10a8bc4f32f2c      alaa user pass 123\r\n\r\n\r\n/*\r\n\r\n    \"title\":\"Title2\",\r\n    \"price\": 111,\r\n    \"img\": \"https://images.pexels.com/photos/96938/pexels-photo-96938.jpeg\",\r\n    \"address\": \"Address1\",\r\n    \"city\": \"City1\",\r\n    \"bedroom\": 11,\r\n    \"bathroom\": 111,\r\n    \"type\":\"rent\",\r\n    \"property\":\"apartment\",\r\n    \"latitude\":\"51.5074\",\r\n    \"longitude\":\"-0.1278\"\r\n\r\n*/",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/posts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts/123",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/posts/66baf969fc93674a762220e0",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"posts",
+								"66baf969fc93674a762220e0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chats",
+			"item": [
+				{
+					"name": "Get Chats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/chats",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"chats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Chat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/chats/66bd0a1fe62388f2e68be952",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"chats",
+								"66bd0a1fe62388f2e68be952"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Chat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"receiverId\":\"669f8e2d9d16971073f9c8d9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/chats",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"chats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Chat",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/chats/read/66bd0a1fe62388f2e68be952",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"chats",
+								"read",
+								"66bd0a1fe62388f2e68be952"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "messages",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"first message\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/messages/66bd0a1fe62388f2e68be952",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"messages",
+								"66bd0a1fe62388f2e68be952"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "localhost:8800/api",
+			"type": "string"
+		}
+	]
+}
